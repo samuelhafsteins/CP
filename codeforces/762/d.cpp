@@ -1,8 +1,3 @@
-/*
-ID: samuelh3
-TASK: sort3
-LANG: C++14                 
-*/
 #pragma GCC optimize("Ofast","unroll-loops")
 #pragma GCC target("avx2,fma")
 #include <bits/stdc++.h>
@@ -27,34 +22,60 @@ typedef vector<vii> vvii;
 template <class T> T smod(T a, T b) {
   return (a % b + b) % b; }
 
-//fin = cin | fout = cout
-int main(){
-  int n, count = 0;
-  ifstream fin ("sort3.in");
-  ofstream fout ("sort3.out");
+int n, m;
+vvi p;
 
-  fin >> n;
-  vi arr(n), s(n), r;
-
-  rep(i, 0, n){
-    fin >> arr[i];
-    s[i] = arr[i];
-  }
-
-  sort(s.begin(), s.end());
-
-  int current = 0;
-  rep(i, 0, n){
-    if(s[i] != current){
-      r.pb(i);
-      current++;
+bool check(int x){
+  vector<bool> a(n);
+  bool pair = false;
+  rep(i, 0, m){
+    int count = 0;
+    rep(j, 0, n){
+      if (p[i][j] >= x){
+        a[j] = true;
+        count++;
+      }
     }
+    if (count > 1) pair = true;
   }
 
+  if (!pair && n > 1) return false;
+
+  bool ans = true;
+
   rep(i, 0, n){
+    ans &= a[i];
+  }
+
+  return ans;
+}
+
+int main(){
+  int t;
+  cin >> t;
+
+  while (t--){
+    cin >> m >> n;
+
+    p.assign(m, vi(n));
+
+    rep(i, 0, m){
+      rep(j, 0, n){
+        cin >> p[i][j];
+      }
+    }
+
+    int l = 1, r = 2;
+
+    while(check(r)) r *= 2;
+    while(r - l > 1){
+      int mid = (r + l)/2;
+      if (check(mid)) l = mid;
+      else r = mid;
+    }
+
+    cout << l << endl;
     
   }
-
-  fout << count << endl;
   return 0;
 }

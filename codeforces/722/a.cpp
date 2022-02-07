@@ -23,6 +23,7 @@ template <class T> T smod(T a, T b) {
   return (a % b + b) % b; }
 
 int main(){
+  printf("%2d", 123);
   int t;
   cin >> t;
   while(t--){

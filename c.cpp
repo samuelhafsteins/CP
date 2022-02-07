@@ -1,8 +1,3 @@
-/*
-ID: samuelh3
-TASK: sort3
-LANG: C++14                 
-*/
 #pragma GCC optimize("Ofast","unroll-loops")
 #pragma GCC target("avx2,fma")
 #include <bits/stdc++.h>
@@ -27,34 +22,42 @@ typedef vector<vii> vvii;
 template <class T> T smod(T a, T b) {
   return (a % b + b) % b; }
 
-//fin = cin | fout = cout
-int main(){
-  int n, count = 0;
-  ifstream fin ("sort3.in");
-  ofstream fout ("sort3.out");
+int n;
+string res;
 
-  fin >> n;
-  vi arr(n), s(n), r;
-
-  rep(i, 0, n){
-    fin >> arr[i];
-    s[i] = arr[i];
+int finish(int a, int b) {
+  cout << '?' << ' ' << a << ' ' << n << flush;
+  cin >> res;
+  if (res == "equal"){
+    return b;
   }
+  return a;
+}
 
-  sort(s.begin(), s.end());
+int main(){
+  cin >> n;
 
-  int current = 0;
-  rep(i, 0, n){
-    if(s[i] != current){
-      r.pb(i);
-      current++;
+  int ans = 0;
+
+  for (int i = 1; i < n - 1; i += 2){
+    cout << '?' << ' ' << i << ' ' << i + 1 << flush;
+    cin >> res;
+    if (res != "equal") {
+      ans = finish(i, i + 1);
+      break;
     }
   }
 
-  rep(i, 0, n){
-    
+  if (!ans) {
+    ans = n;
+    cout << '?' << ' ' << 1 << ' ' << n << flush;
+    cin >> res;
+    if (res == "equal"){
+      ans = n - 1;
+    }
   }
 
-  fout << count << endl;
+  cout << '!' << ' ' << ans << flush;
+
   return 0;
 }

@@ -1,8 +1,3 @@
-/*
-ID: samuelh3
-TASK: sort3
-LANG: C++14                 
-*/
 #pragma GCC optimize("Ofast","unroll-loops")
 #pragma GCC target("avx2,fma")
 #include <bits/stdc++.h>
@@ -27,34 +22,38 @@ typedef vector<vii> vvii;
 template <class T> T smod(T a, T b) {
   return (a % b + b) % b; }
 
-//fin = cin | fout = cout
+#define ROM_10000000_0 0
+#define _LD(x, y) ROM_ ## x ## _ ## y //ROM_+x+_+y
+#define LD(x, y) _LD(x, y)
+#define _MA(l0, l1, l2, l3, l4, l5, l6, l7) l7 ## l6 ## l5 ## l4 ## l3 ## l2 ## l1 ## l0 // l7+l6+l5+l4+l3+l2+l1_l0
+#define MA(l0, l1, l2, l3, l4, l5, l6, l7) _MA(l0, l1, l2, l3, l4, l5, l6, l7) // just calls _MA()
+#define l MA(l0, l1, l2, l3, l4, l5, l6, l7) //calls _MA()
+
+#define l0 0
+#define l1 0
+#define l2 0
+#define l3 0
+#define l4 0
+#define l5 0
+#define l6 0
+#define l7 1
+
+#if LD(l, 0)
+#error YES
+#else
+#error NO
+#endif
+
+
 int main(){
-  int n, count = 0;
-  ifstream fin ("sort3.in");
-  ofstream fout ("sort3.out");
-
-  fin >> n;
-  vi arr(n), s(n), r;
-
-  rep(i, 0, n){
-    fin >> arr[i];
-    s[i] = arr[i];
-  }
-
-  sort(s.begin(), s.end());
-
-  int current = 0;
-  rep(i, 0, n){
-    if(s[i] != current){
-      r.pb(i);
-      current++;
+  int n, t;
+  cin >> t;
+  while (t--){
+    vi a;
+    cin >> n;
+    rep (i, 0, n){
+      cin >> a[i];
     }
   }
-
-  rep(i, 0, n){
-    
-  }
-
-  fout << count << endl;
   return 0;
 }

@@ -1,3 +1,5 @@
 fkUndirbuningur/
 .vscode/
-a.out/
+**/*.out
+**/*.txt
+**/out
