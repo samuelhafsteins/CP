@@ -1,2 +1,2 @@
-# CP
-Some of my codes from various different CP problems
+# Competitive Programming
+Some of my codes from various different competitive programming problems
