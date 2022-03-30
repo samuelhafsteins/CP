@@ -34,27 +34,50 @@ int main(){
   ofstream fout ("sort3.out");
 
   fin >> n;
-  vi arr(n), s(n), r;
+  vi arr(n);
+  int c1 = 0, c2 = 0, c3 = 0;
 
   rep(i, 0, n){
     fin >> arr[i];
-    s[i] = arr[i];
+    if (arr[i] == 1) c1++;
+    else if (arr[i] == 2) c2++;
+    else c3++;
   }
 
-  sort(s.begin(), s.end());
+  cout << c1 << ' ' << c2 << ' ' << c3 << endl;
 
-  int current = 0;
-  rep(i, 0, n){
-    if(s[i] != current){
-      r.pb(i);
-      current++;
-    }
+
+  int c12 = 0, c13 = 0;
+  rep(i, 0, c1){
+    if (arr[i] == 2) c12++;
+    else if (arr[i] == 3) c13++;
+  }
+  int c21 = 0, c23 = 0;
+  rep(i, c1, c2 + c1){
+    if (arr[i] == 1) c21++;
+    else if (arr[i] == 3) c23++;
+  }
+  int c31 = 0, c32 = 0;
+  rep(i, c2 + c1, n){
+    if (arr[i] == 1) c31++;
+    else if(arr[i] == 2) c32++;
   }
 
-  rep(i, 0, n){
-    
-  }
+  cout << c12 << ' ' << c13 << endl;
+  cout << c21 << ' ' << c23 << endl;
+  cout << c31 << ' ' << c32 << endl;
+
+
+  count += min(c12, c21);
+  int l1 = abs(c12 - c21);
+  count += min(c13, c31);
+  int l2 = abs(c13 - c31);
+  count += min(c23, c32);
+  int l3 = abs(c23 - c32);
+
+  count += l1 * 2;
 
   fout << count << endl;
+  cout << l1 << ' ' << l2 << ' ' << l3 << endl;
   return 0;
 }
